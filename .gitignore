@@ -1,2 +1,7 @@
 lib_managed
 target
+service/target
+project/target
+project/project
+.idea
+*.iml
