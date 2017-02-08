@@ -35,7 +35,7 @@ object Build extends Build {
   .enablePlugins(JavaAppPackaging)
   .settings(
     name := "example-service",
-    mainClass in Compile := Some("dockerize.service.ExampleService"),
+    mainClass in (Compile, run) := Some("dockerize.service.ExampleService"),
     dockerExposedPorts := Seq(8080),
     dockerEntrypoint := Seq("sh", "-c", "bin/example-service"),
     dockerRepository := Some("example"),

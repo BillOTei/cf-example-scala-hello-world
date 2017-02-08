@@ -10,6 +10,8 @@ EXPOSE 5005
 
 COPY . /usr/src/app
 
-RUN sbt -mem 2048 clean compile
+RUN sbt -mem 2048 clean compile package
 
-CMD ["sbt", "run"]
+RUN sbt docker:publishLocal
+
+#CMD ["sbt", "run"]
