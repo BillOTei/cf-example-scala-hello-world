@@ -1,13 +1,23 @@
 version: '1.0'
 steps:
+  generate_dockerfile:
+    image: noamt/pre-cached-sbt
+    working_directory: ${{main_clone}}
+    commands:
+      - sbt -mem 4096 clean compile package
+      - sbt docker:stage
+
   build_step:
     type: build
     image_name: codefresh/example-scala
+    working_directory: ${{main_clone}}/service/target/docker/stage
+    dockerfile: Dockerfile
     tag: ${{CF_BRANCH}}
 
-  launch_composition:
-    title: Launch Composition
-    type: launch-composition
-    composition: docker-compose.yml
-    environment_name: 'scala-example'
-    entry_point: scala
+
+#  launch_composition:
+#    title: Launch Composition
+#    type: launch-composition
+#    composition: docker-compose.yml
+#    environment_name: 'scala-example'
+#    entry_point: scala

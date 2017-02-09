@@ -12,6 +12,6 @@ COPY . /usr/src/app
 
 RUN sbt -mem 2048 clean compile package
 
-RUN sbt docker:publishLocal
+RUN sbt docker:stage
 
 #CMD ["sbt", "run"]
