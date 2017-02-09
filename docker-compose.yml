@@ -2,5 +2,6 @@ version: '2'
 services:
   scala:
     image: codefresh/example-scala:master
+    command: echo "run and exit"
     ports:
       - 8080
