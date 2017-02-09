@@ -1,6 +1,6 @@
 version: '2'
 services:
   scala:
-    image: codefresh/example-scala
+    image: codefresh/example-scala:master
     ports:
       - 8080

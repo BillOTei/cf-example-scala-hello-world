@@ -14,10 +14,9 @@ steps:
     dockerfile: Dockerfile
     tag: ${{CF_BRANCH}}
 
-
-#  launch_composition:
-#    title: Launch Composition
-#    type: launch-composition
-#    composition: docker-compose.yml
-#    environment_name: 'scala-example'
-#    entry_point: scala
+  launch_composition:
+    title: Launch Composition
+    type: launch-composition
+    composition: docker-compose.yml
+    environment_name: 'scala-example'
+    entry_point: scala

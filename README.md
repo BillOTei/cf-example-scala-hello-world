@@ -19,9 +19,18 @@ To bake our application into a Docker image we use Codefresh's [Build step](http
 The Build is a simplified abstraction over the Docker build command.
 
 ```yml
-build_step:
+generate_dockerfile:
+    image: noamt/pre-cached-sbt
+    working_directory: ${{main_clone}}
+    commands:
+      - sbt -mem 4096 clean compile package
+      - sbt docker:stage
+
+  build_step:
     type: build
     image_name: codefresh/example-scala
+    working_directory: ${{main_clone}}/service/target/docker/stage
+    dockerfile: Dockerfile
     tag: ${{CF_BRANCH}}
 ```
 
@@ -46,7 +55,13 @@ Using the `composition` field, we direct Codefresh to the location if the `docke
 
 Once the Launch Composition step has completed successfully, you'll be able to review and share your running composition in the [Environments page](https://docs.codefresh.io/docs/share-environment-with-your-test).
 
+Just add the path '/hello' to application url. Something like that http://cf-aue1-docker-node-0008.cf-cd.com:32943/hello
+
 Now that we've gotten a grip on the flow, let's get cracking!
+
+<p align="center">
+  <img src="./images/codefresh_scala_example.png">
+</p>
 
 ## Using This Example
 
