@@ -4,6 +4,8 @@ steps:
     image: noamt/pre-cached-sbt
     working_directory: ${{main_clone}}
     commands:
+      - sbt sbtVersion
+      - sbt scalaVersion
       - sbt -mem 4096 clean compile package
       - sbt docker:stage
 
